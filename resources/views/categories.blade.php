@@ -7,6 +7,8 @@
 
 
 @section('content')
-<p>Категории</p>
+<h1>Категории</h1>
+
+
 
 @endsection
