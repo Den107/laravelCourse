@@ -24,7 +24,7 @@
             <li class="nav-item"><a href="/category" class="nav-link">Категории новостей</a></li>
             <li class="nav-item"><a href="/news" class="nav-link">Все новости</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Авторизация</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Добавить новость</a></li>
+            <li class="nav-item"><a href="/addNews" class="nav-link">Добавить новость</a></li>
         </ul>
     </header>
     <div class="container">

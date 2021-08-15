@@ -30,3 +30,7 @@ Route::get('/news', [NewsController::class, 'index'], function () {
 Route::get('/oneNews/{id}', [NewsController::class, 'show'], function () {
     return view('oneNews');
 });
+
+Route::get('/addNews', function () {
+    return view('addNews');
+});
