@@ -21,4 +21,6 @@ class Category extends Model
     {
         return DB::select("SELECT id, title, description FROM {$this->table} WHERE id = :id", ['id' => $id]);
     }
+
+    protected $fillable = ['title', 'description'];
 }

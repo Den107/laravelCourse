@@ -9,11 +9,7 @@ class News extends Model
 {
     use HasFactory;
 
-    public function getNews()
-    {
-    }
+    protected $table = 'news';
 
-    public function getNewsById(int $id)
-    {
-    }
+    public static array $allowedFields = ['id', 'title', 'author', 'status', 'description'];
 }

@@ -15,8 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $model = new Category();
-        $categories = $model->getCategories();
+        $categories = Category::all();
 
         return view('categories', ['categories' => $categories]);
     }
@@ -39,7 +38,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(['title' => ['required', 'string']]);
+
+        $category = Category::create($request->only(['title', 'description']));
+
+        if ($category) {
+            return redirect()->route('category.index')->with('success', 'Категория успешно добавлена');
+        }
+
+        return back()->withInput();
     }
 
     /**
@@ -48,7 +55,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $category)
     {
         //
     }
@@ -59,9 +66,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('editCategory', ['category' => $category]);
     }
 
     /**
@@ -71,9 +78,15 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $request->validate(['title' => ['required', 'string']]);
+
+        $category = $category->fill($request->only(['title', 'description']))->save();
+
+        if ($category) {
+            return redirect()->route('category.index')->with('success', 'Категория успешно изменена');
+        }
     }
 
     /**

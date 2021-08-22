@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -22,9 +24,10 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $categories = Category::all();
+        return view('addNews', ['categories' => $categories]);
     }
 
     /**
@@ -35,7 +38,15 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(['title' => ['required', 'string']]);
+
+        $data = $request->only(['title', 'description', 'category']);
+
+        $news = News::create($data);
+
+        if ($news) {
+            return redirect()->route('news.index')->with('success', 'Новость успешно добавлена');
+        }
     }
 
     /**
@@ -44,7 +55,7 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(News $news)
     {
         //
     }
@@ -55,9 +66,10 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(News $news)
     {
-        //
+        $categories = Category::all();
+        return view('editNews', ['news' => $news, 'categories' => $categories]);
     }
 
     /**

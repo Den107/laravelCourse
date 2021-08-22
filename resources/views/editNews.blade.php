@@ -7,20 +7,16 @@
 
 
 @section('content')
-<h1>Добавить Новость</h1>
+<h1>Редактировать новость</h1>
 <div class="container">
-    <form method="POST" action="{{route(news.add)}}">
+    <form method="POST" action="{{route(categories.update, ['category'=>$category])}}">
         <div class="mb-3 mt-3">
             <label for="title" class="form-label">Название</label>
             <input type="text" class="form-control" id="title" aria-describedby="emailHelp">
 
         </div>
         <div class="mb-3">
-            <label for="category_id" class="form-label">Категория</label>
-            <input type="text" class="form-control" id="category_id">
-        </div>
-        <div class="mb-3">
-            <label for="bodyNews" class="form-label">Текст новости</label>
+            <label for="bodyNews" class="form-label">Описание</label>
             <textarea class="form-control" id="bodyNews" rows="3"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Добавить</button>
